@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 import { WEIGHTS } from '../../constants';
 import { formatPrice, pluralize, isNewShoe } from '../../utils';
@@ -51,6 +51,24 @@ const ShoeCard = ({ slug, name, imageSrc, price, salePrice, releaseDate, numOfCo
 		</Link>
 	);
 };
+
+var shake = keyframes`
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(5deg);
+  }
+  50% {
+    transform: rotate(0deg); 
+  }
+  75% {
+    transform: rotate(-5deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+`;
 
 const Link = styled.a`
 	text-decoration: none;
@@ -109,7 +127,7 @@ const SalePrice = styled.span`
 	color: var(--color-primary);
 `;
 
-const Flag = styled.div`
+var Flag = styled.div`
 	position: absolute;
 	top: 12px;
 	right: -4px;
@@ -121,6 +139,12 @@ const Flag = styled.div`
 	font-weight: ${WEIGHTS.bold};
 	color: var(--color-white);
 	border-radius: 2px;
+
+	@media (prefers-reduced-motion: no-preference) {
+		${ImageWrapper}:hover + & {
+			animation: ${shake} linear 300ms;
+		}
+	}
 `;
 
 const SaleFlag = styled(Flag)`
