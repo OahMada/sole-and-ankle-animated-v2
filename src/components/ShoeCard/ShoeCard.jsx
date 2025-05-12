@@ -143,6 +143,7 @@ var Flag = styled.div`
 	@media (prefers-reduced-motion: no-preference) {
 		${ImageWrapper}:hover + & {
 			animation: ${shake} linear 300ms;
+			animation-delay: 200ms;
 		}
 	}
 `;
